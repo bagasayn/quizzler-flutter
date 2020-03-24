@@ -36,11 +36,15 @@ class _QuizPageState extends State<QuizPage> {
       color: Colors.red,
     ),
   ];
+
   List<String> questions = [
     'You can lead a cow down stairs but not up stairs.',
     'Approximately one quarter of human bones are in the feet.',
     'A slug\'s blood is green.',
   ];
+
+  List<bool> answers = [false, true, true];
+
   int number = 0;
 
   @override
@@ -80,18 +84,21 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //the user picked true,
+                bool correctAnswers = answers[number];
+
+                if (correctAnswers == true) {
+                  scoreKeeper.add(Icon(
+                    Icons.check,
+                    color: Colors.green,
+                  ));
+                } else
+                  scoreKeeper.add(Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ));
                 setState(
                   () {
-                    scoreKeeper.add(
-                      Icon(
-                        Icons.check,
-                        color: Colors.green,
-                      ),
-                    );
-                    if (number < 2)
-                      number++;
-                    else
-                      number = 0;
+                    number++;
                   },
                 );
                 print(number);
@@ -113,6 +120,24 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
+                bool correctAnswers = answers[number];
+
+                if (correctAnswers == false) {
+                  scoreKeeper.add(Icon(
+                    Icons.check,
+                    color: Colors.green,
+                  ));
+                } else
+                  scoreKeeper.add(Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ));
+                setState(
+                  () {
+                    number++;
+                  },
+                );
+                print(number);
               },
             ),
           ),
