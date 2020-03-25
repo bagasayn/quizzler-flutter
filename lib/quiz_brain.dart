@@ -1,7 +1,11 @@
+import 'package:flutter/cupertino.dart';
+
 import 'question.dart';
 
 class QuizBrain {
   int _number = 0;
+
+  List<Icon> _scoreKeeper = [];
 
   List<Question> _questionList = [
     Question('You can lead a cow down stairs but not up stairs.', false),
@@ -31,7 +35,11 @@ class QuizBrain {
     Question('Some cats are actually allergic to humans', true),
   ];
 
-  String getQuesionText() {
+  List getQuestionList() {
+    return _scoreKeeper;
+  }
+
+  String getQuestionText() {
     return _questionList[_number].questionText;
   }
 
@@ -40,8 +48,14 @@ class QuizBrain {
   }
 
   void nextQuestion() {
-    if(_number < _questionList.length){
-    _number++;
-  },
+    if (_number < _questionList.length) {
+      _number++;
+    }
+    if (_questionList.length == _number) {
+      _scoreKeeper.clear();
+    }
+
+    print(_number);
+    print(_questionList.length);
   }
 }
