@@ -53,9 +53,7 @@ class QuizBrain {
     }
     if (_questionList.length == _number) {
       _scoreKeeper.clear();
+      _number = 0;
     }
-
-    print(_number);
-    print(_questionList.length);
   }
 }
