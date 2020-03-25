@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'quiz_brain.dart';
 
 QuizBrain quizBrain = QuizBrain();
-
 void main() => runApp(Quizzler());
 
 class Quizzler extends StatelessWidget {
@@ -28,6 +27,46 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  void checkAnswer() {
+    if (quizBrain.getQuestionAnswer() == true) {
+      quizBrain.getQuestionList().add(Icon(
+            // add Icon check
+            Icons.check,
+            color: Colors.green,
+          ));
+    } else
+      quizBrain.getQuestionList().add(Icon(
+            // add Icon close
+            Icons.close,
+            color: Colors.red,
+          ));
+    setState(
+      () {
+        quizBrain.nextQuestion();
+      },
+    );
+  }
+
+  void closeAnswer() {
+    if (quizBrain.getQuestionAnswer() == false) {
+      quizBrain.getQuestionList().add(Icon(
+            // add Icon check
+            Icons.check,
+            color: Colors.green,
+          ));
+    } else
+      quizBrain.getQuestionList().add(Icon(
+            // add Icon close
+            Icons.close,
+            color: Colors.red,
+          ));
+    setState(
+      () {
+        quizBrain.nextQuestion();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -65,23 +104,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //the user picked true,
-                if (quizBrain.getQuestionAnswer() == true) {
-                  quizBrain.getQuestionList().add(Icon(
-                        // add Icon check
-                        Icons.check,
-                        color: Colors.green,
-                      ));
-                } else
-                  quizBrain.getQuestionList().add(Icon(
-                        // add Icon close
-                        Icons.close,
-                        color: Colors.red,
-                      ));
-                setState(
-                  () {
-                    quizBrain.nextQuestion();
-                  },
-                );
+                checkAnswer();
               },
             ),
           ),
@@ -100,23 +123,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                if (quizBrain.getQuestionAnswer() == false) {
-                  quizBrain.getQuestionList().add(Icon(
-                        // add Icon check
-                        Icons.check,
-                        color: Colors.green,
-                      ));
-                } else
-                  quizBrain.getQuestionList().add(Icon(
-                        // add Icon close
-                        Icons.close,
-                        color: Colors.red,
-                      ));
-                setState(
-                  () {
-                    quizBrain.nextQuestion();
-                  },
-                );
+                closeAnswer();
               },
             ),
           ),
