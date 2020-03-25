@@ -40,6 +40,8 @@ class QuizBrain {
   }
 
   void nextQuestion() {
+    if(_number < _questionList.length){
     _number++;
+  },
   }
 }
